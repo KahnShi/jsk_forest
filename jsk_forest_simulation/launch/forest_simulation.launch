@@ -5,7 +5,7 @@
   <arg name="enable_logging" default="false" />
   <arg name="enable_ground_truth" default="true" />
   <arg name="log_file" default="$(arg mav_name)" />
-  <arg name="paused" value="true"/>
+  <arg name="paused" value="false"/>
 
   <arg name="start_x" value="-15.0"/>
   <arg name="start_y" value="15.0"/>
@@ -21,20 +21,20 @@
     <arg name="gui" default="true"/>
   </include>
 
-  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find jsk_forest_simulation)/rviz/simulation.rviz" />
 
   <!-- use hector in simulator -->
   <group if="$(arg has_hector)">
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find jsk_forest_simulation)/rviz/simulation_hector.rviz" />
     <include file="$(find hector_quadrotor_gazebo)/launch/spawn_quadrotor.launch" >
       <arg name="name" value="quadrotor"/>
-      <arg name="model" value="$(find hector_quadrotor_description)/urdf/quadrotor_downward_cam.gazebo.xacro" />
+      <arg name="model" value="$(find hector_quadrotor_description)/urdf/quadrotor_with_asus_with_hokuyo_utm30lx.gazebo.xacro" />
       <arg name="use_ground_truth_for_tf" value="true" />
       <arg name="use_ground_truth_for_control" value="true" />
       <arg name="x" value="$(arg start_x)"/>
       <arg name="y" value="$(arg start_y)"/>
       <arg name="z" value="$(arg start_z)"/>
     </include>
-    <node pkg="iterative_planner_server" type="uav_teleop_keyboard" name="uav_teleop_keyboard"
+    <node pkg="jsk_forest_simulation" type="uav_teleop_keyboard" name="uav_teleop_keyboard"
           launch-prefix="xterm -e">
       <param name="teleopUGV" value="false"/>
       <remap from="teleopUGV" to="uav_teleop_keyboard/teleopUGV"/>
@@ -43,6 +43,7 @@
 
   <!-- use eth-asl drone in simulator -->  
   <group unless="$(arg has_hector)">
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find jsk_forest_simulation)/rviz/simulation_aestech.rviz" />
     <include file="$(find rotors_gazebo)/launch/spawn_mav.launch">
       <arg name="mav_name" value="$(arg mav_name)" />
       <arg name="model" value="$(find jsk_forest_simulation)/urdf/mav_r200.gazebo" />
