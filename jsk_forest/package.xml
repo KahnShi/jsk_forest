@@ -1,0 +1,27 @@
+<package>
+  <name>jsk_forest</name>
+  <version>1.0.1</version>
+  <description>
+    Software of JSK lab in forest challenge.
+  </description>
+
+  <maintainer email="bakui@jsk.imi.i.u-tokyo.ac.jp">Moju Zhao</maintainer>
+  <maintainer email="shifan@jsk.imi.i.u-tokyo.ac.jp">Fan Shi</maintainer>
+  <maintainer email="anzai@jsk.imi.i.u-tokyo.ac.jp">Tomoki Anzai</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://www.jsk.t.u-tokyo.ac.jp/</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!--   jsk_mbzirc_common-->
+  <run_depend>jsk_forest_simulation</run_depend>
+  <run_depend>jsk_forest_common</run_depend>
+  <run_depend>jsk_forest_vision</run_depend>
+  <run_depend>jsk_forest_motion</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>
