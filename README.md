@@ -22,7 +22,13 @@ catkin bt
 Launch the system and simulator
 
 ```
-roslaunch jsk_forest_simulation trajectory_replanning_simulation.launch has_hector:=true
+roslaunch jsk_forest_simulation forest_simulation.launch has_hector:=true
+```
+
+Previous is in customized world. You could also play with clustered world.
+
+```
+roslaunch jsk_forest_simulation forest_simulation.launch has_hector:=true world_name:=cylinders0
 ```
 
 #### 2). AesTech Firefly
@@ -47,7 +53,7 @@ catkin bt
 Launch the system and simulator
 
 ```
-roslaunch jsk_forest_simulation trajectory_replanning_simulation.launch has_hector:=false
+roslaunch jsk_forest_simulation forest_simulation.launch has_hector:=false
 ```
 
 
